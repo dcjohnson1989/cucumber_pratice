@@ -1,6 +1,6 @@
 require 'watir-webdriver'
 require 'rubygems'
-require 'appium_lib'
+#require 'appium_lib'
 
 desired_caps = {
    caps: {
@@ -17,7 +17,7 @@ Before do
   # @appium_driver = Appium::Driver.new(desired_caps)
   # driver = @appium_driver.start_driver
   # Appium.promote_appium_methods Object
-  @browser = Watir::Browser.new :firefox
+  @browser = Watir::Browser.new :chrome
 end
 
 
