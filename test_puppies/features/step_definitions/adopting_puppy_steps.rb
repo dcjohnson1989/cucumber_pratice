@@ -1,22 +1,25 @@
-timer = 2
+timer = 10
 
 Given /^I launched puppy adoption site$/ do
 	@browser.goto "http://puppies.herokuapp.com"
+	@home = HomePage.new(@browser)
 end
 
 When /^I click the View Details button$/ do
 	sleep timer
-	@browser.button(:value => "View Details").click
+	@home.select_puppy_number(1)
+	@details = DetailPage.new(@browser)
 end
 
 When /^I click the First View Details button$/ do
 	sleep timer
-	@browser.button(:value => "View Details").click
+	@home.select_puppy_number(1)
+	@details = DetailPage.new(@browser)
 end
 
 And /^I click the Adopt Me button$/ do
 	sleep timer
-	@browser.button(:value => "Adopt Me!").click
+	@details.add_to_cart
 	@cart = ShoppingCartPage.new(@browser)
 end
 
@@ -27,7 +30,8 @@ end
 
 When /^I click the Second View Details button$/ do
 	sleep timer
-	@browser.button(:value => "View Details", :index => 2).click
+	@home.select_puppy_number(2)
+	@details = DetailPage.new(@browser)
 end
 
 And /^I click the Complete the Adoption button$/ do

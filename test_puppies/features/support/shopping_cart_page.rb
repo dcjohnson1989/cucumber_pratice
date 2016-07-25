@@ -1,4 +1,5 @@
 class ShoppingCartPage
+	include PageObject
 	NAME_COLUMN = 1
 	SUBTOTAL_COLUMN = 3
 	LINES_PER_PUPPY = 6
@@ -31,28 +32,20 @@ class CheckoutPage
 	text_field(:email, :id => "order_email")
 	select_list(:pay_type, :id => "order_pay_type")
 	button(:place_order, :value => "Place Order")
-	# def initialize(browser)
-	# 	@browser = browser
-	# end
-	# def name=(name)
-	# 	@browser.text_field(:id => "order_name").set(name)
-	# end
-	# def address=(address)
-	# 	@browser.text_field(:id => "order_address").set(address)
-	# end
-  #
-	# def email=(email)
-	# 	@browser.text_field(:id => "order_email").set(email)
-	# end
-  #
-	# def pay_type=(pay_type)
-	# 	@browser.select_list(:id => "order_pay_type").select(pay_type)
-	# end
-  #
-	# def place_order
-	# 	@browser.button(:value => "Place Order").click
-	# end
+
 end
 
+class DetailPage
+	include PageObject
+	button(:add_to_cart, :value => "Adopt Me!")
+end
 
+class HomePage
+	include PageObject
+	# button(:first_puppy, :value => "View Details", :index => 0)
+	# button(:second_puppy, :value => "View Details", :index => 1)
 
+	def select_puppy_number(index)
+		button_element(:value => "View Details", :index => index - 1).click()
+	end
+end
